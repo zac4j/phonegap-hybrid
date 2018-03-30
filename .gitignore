@@ -12,7 +12,6 @@ out
 # Gradle builds
 /gradlew
 /gradlew.bat
-/gradle
 /build
 
 # Built application files
