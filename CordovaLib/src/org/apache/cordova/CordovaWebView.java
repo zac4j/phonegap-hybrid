@@ -31,9 +31,10 @@ import android.webkit.WebChromeClient.CustomViewCallback;
  * are not expected to implement it.
  */
 public interface CordovaWebView {
-    public static final String CORDOVA_VERSION = "4.1.0-dev";
+    public static final String CORDOVA_VERSION = "7.2.0-dev";
 
-    void init(CordovaInterface cordova, List<PluginEntry> pluginEntries, CordovaPreferences preferences);
+    void init(CordovaInterface cordova, List<PluginEntry> pluginEntries,
+        CordovaPreferences preferences);
 
     boolean isInitialized();
 
@@ -101,7 +102,8 @@ public interface CordovaWebView {
      * @param clearHistory  Clear the history stack, so new page becomes top of history
      * @param params        Parameters for new app
      */
-    void showWebPage(String url, boolean openExternal, boolean clearHistory, Map<String, Object> params);
+    void showWebPage(String url, boolean openExternal, boolean clearHistory,
+        Map<String, Object> params);
 
     /**
      * Deprecated in 4.0.0. Use your own View-toggling logic.

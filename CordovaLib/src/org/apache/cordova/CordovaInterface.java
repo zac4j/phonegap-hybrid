@@ -19,6 +19,7 @@
 package org.apache.cordova;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 
 import org.apache.cordova.CordovaPlugin;
@@ -39,7 +40,8 @@ public interface CordovaInterface {
      * @param intent      The intent to start
      * @param requestCode   The request code that is passed to callback to identify the activity
      */
-    abstract public void startActivityForResult(CordovaPlugin command, Intent intent, int requestCode);
+    abstract public void startActivityForResult(CordovaPlugin command, Intent intent,
+        int requestCode);
 
     /**
      * Set the plugin to be called when a sub-activity exits.
@@ -51,10 +53,18 @@ public interface CordovaInterface {
     /**
      * Get the Android activity.
      *
+     * If a custom engine lives outside of the Activity's lifecycle the return value may be null.
+     *
      * @return the Activity
      */
     public abstract Activity getActivity();
-    
+
+    /**
+     * Get the Android context.
+     *
+     * @return the Context
+     */
+    public Context getContext();
 
     /**
      * Called when a message is sent to plugin.
@@ -69,4 +79,20 @@ public interface CordovaInterface {
      * Returns a shared thread pool that can be used for background tasks.
      */
     public ExecutorService getThreadPool();
+
+    /**
+     * Sends a permission request to the activity for one permission.
+     */
+    public void requestPermission(CordovaPlugin plugin, int requestCode, String permission);
+
+    /**
+     * Sends a permission request to the activity for a group of permissions
+     */
+    public void requestPermissions(CordovaPlugin plugin, int requestCode, String[] permissions);
+
+    /**
+     * Check for a permission.  Returns true if the permission is granted, false otherwise.
+     */
+    public boolean hasPermission(String permission);
+
 }
